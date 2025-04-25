@@ -24,14 +24,16 @@ export default async function BlogPost({
   const contentHtml = processedContent.toString();
 
   return (
-    <div>
-      <div>{data.title}</div>
-      <div>{data.description}</div>
-      <article
-        className="prose dark:prose-invert prose-h1"
-        dangerouslySetInnerHTML={{ __html: contentHtml }}
-      />
-      <Comments />
+    <div className="flex justify-center">
+      <div className="max-w-screen-lg w-[60%] mx-auto">
+        <div>{data.title}</div>
+        <div>{data.description}</div>
+        <article
+          className="prose dark:prose-invert prose-h1"
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
+        />
+        <Comments />
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function Home() {
   const postFolders = fs.readdirSync(postsDirectory);
 
   return (
-    <div>
+    <div className="max-w-screen-lg w-[60%] mx-auto">
       <div className="text-3xl font-bold">블로그 포스트 목록</div>
       <ul>
         {postFolders.map((folder) => {

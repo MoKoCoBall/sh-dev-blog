@@ -1,26 +1,39 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function Comments() {
+  const { theme } = useTheme();
+  const [currentTheme, setCurrentTheme] = useState("github-light");
+
   useEffect(() => {
-    const theme = document.documentElement.classList.contains("dark")
-      ? "github-dark"
-      : "github-light";
+    const newTheme = theme === "dark" ? "github-dark" : "github-light";
+    setCurrentTheme(newTheme);
+
     const script = document.createElement("script");
     script.src = "https://utteranc.es/client.js";
     script.setAttribute("repo", "MoKoCoBall/blog-comment");
     script.setAttribute("issue-term", "pathname");
-    script.setAttribute("theme", theme);
+    script.setAttribute("theme", newTheme);
     script.setAttribute("label", "Comment");
     script.crossOrigin = "anonymous";
     script.async = true;
 
     const commentDiv = document.getElementById("comments");
-    if (commentDiv && commentDiv.childNodes.length === 0) {
+    if (commentDiv) {
+      commentDiv.innerHTML = ""; // 기존 스크립트 제거
       commentDiv.appendChild(script);
     }
-  }, []);
+  }, [theme]);
 
-  return <div id="comments" className="mt-12" />;
+  return (
+    <div
+      className={`mt-12 p-4 border rounded-lg shadow-lg ${
+        theme === "dark" ? "bg-white text-black" : "bg-black text-white"
+      }`}
+    >
+      <div id="comments" />
+    </div>
+  );
 }
