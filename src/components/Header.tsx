@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="max-w-screen-xl w-full px-4 sm:w-[95%] md:w-[90%] lg:w-[85%] mx-auto text-lg sm:text-xl md:text-2xl font-bold flex items-center justify-between py-5">
+      <div className="max-w-screen-lg w-full px-4 sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto text-lg sm:text-xl md:text-2xl font-bold flex items-center justify-between py-5">
         <div className="flex items-center">
           <Link href={`/`} className="flex items-center">
             {isMobile ? (

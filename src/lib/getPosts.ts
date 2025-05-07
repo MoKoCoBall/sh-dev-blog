@@ -1,0 +1,42 @@
+import fs from "fs";
+import path from "path";
+import { getParsedData } from "./getParsedData";
+
+export interface Post {
+  slug: string;
+  title: string;
+  emoji: string;
+  preview?: string;
+  tags: string[];
+  date?: string;
+}
+
+export async function getPosts(): Promise<Post[]> {
+  const postsDirectory = path.join(process.cwd(), "src", "posts");
+  const postFolders = fs.readdirSync(postsDirectory);
+
+  // get all posts
+  const posts: Post[] = await Promise.all(
+    postFolders.map(async (folder) => {
+      const { data } = await getParsedData(folder);
+      return {
+        slug: folder,
+        title: data.title ? data.title : null,
+        emoji: data.emoji ? data.emoji : null,
+        tags: data.tags ? data.tags : null,
+        preview: data.preview ? data.preview : null,
+        date: data.date ? data.date : null,
+      };
+    })
+  );
+
+  return posts;
+}
+
+export function getSortedPosts(posts: Post[]): Post[] {
+  return [...posts].sort((a, b) => {
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+}

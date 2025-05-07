@@ -13,7 +13,7 @@ export default function IntroBlock() {
   const [charIndex, setCharIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
 
-  // 커서 깜빡임 효과
+  // Implement cursor
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor((prev) => !prev);
@@ -22,6 +22,7 @@ export default function IntroBlock() {
     return () => clearInterval(cursorInterval);
   }, []);
 
+  // Implement typing
   useEffect(() => {
     const current = roles[loopIndex % roles.length];
     let timer: NodeJS.Timeout;
@@ -54,7 +55,7 @@ export default function IntroBlock() {
   }, [charIndex, isDeleting, loopIndex]);
 
   return (
-    <section className="relative w-full max-w-3xl mx-auto px-4 pb-8 pt-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-base sm:text-lg md:text-xl leading-[1.8] bg-transparent">
+    <section className="relative w-full max-w-3xl mx-auto px-4 pb-16 pt-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-base sm:text-lg md:text-xl leading-[1.8] bg-transparent">
       <div className="absolute top-6 right-6 flex gap-4">
         <a
           href="https://github.com/MoKoCoBall"
