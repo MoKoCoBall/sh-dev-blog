@@ -3,14 +3,24 @@
 import { useEffect, useState } from "react";
 
 const roles = ["FrontEnd", "React", "Next.js", "TypeScript"];
-const typingSpeed = 100;
-const pauseTime = 2000;
+const typingSpeed = 150;
+const pauseTime = 3000;
 
 export default function IntroBlock() {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopIndex, setLoopIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+
+  // 커서 깜빡임 효과
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 500);
+
+    return () => clearInterval(cursorInterval);
+  }, []);
 
   useEffect(() => {
     const current = roles[loopIndex % roles.length];
@@ -36,7 +46,7 @@ export default function IntroBlock() {
     } else {
       timer = setTimeout(
         handleTyping,
-        isDeleting ? typingSpeed / 2 : typingSpeed
+        isDeleting ? typingSpeed / 1.5 : typingSpeed
       );
     }
 
@@ -104,15 +114,19 @@ export default function IntroBlock() {
           </span>
         </div>
 
-        <div className="mt-2">
+        <div className="mt-2 whitespace-nowrap">
           <span className="text-zinc-800 dark:text-zinc-200">&lt;p&gt;</span>
           <span className="ml-2 text-zinc-800 dark:text-zinc-200">
             저는{" "}
-            <span className="font-bold relative inline-flex">
-              <span className="text-black dark:text-white bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded">
+            <span className="inline-block font-bold">
+              <span className="text-black dark:text-white bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
                 {text}
+                <span
+                  className={`inline-block w-[2px] h-[1em] align-middle bg-black dark:bg-white ${
+                    showCursor ? "opacity-100" : "opacity-0"
+                  }`}
+                ></span>
               </span>
-              <span className="absolute right-[-2px] top-1/2 transform -translate-y-1/2 inline-block w-[2px] h-[1.2em] bg-black dark:bg-white animate-pulse" />
             </span>{" "}
             개발자입니다.
           </span>
