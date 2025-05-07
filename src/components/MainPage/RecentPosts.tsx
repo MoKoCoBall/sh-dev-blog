@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPosts, getSortedPosts, type Post } from "@/lib/getPosts";
+import { getPosts, getSortedPosts } from "@/lib/getPosts";
 
 export default async function RecentPosts() {
   const posts = await getPosts();
