@@ -16,31 +16,24 @@ export default function IntroBlock() {
     const current = roles[loopIndex % roles.length];
     let timer: NodeJS.Timeout;
 
-    // 타이핑 또는 삭제 로직
     const handleTyping = () => {
       if (isDeleting) {
-        // 삭제 중
         setText(current.substring(0, charIndex - 1));
         setCharIndex((prev) => prev - 1);
       } else {
-        // 타이핑 중
         setText(current.substring(0, charIndex + 1));
         setCharIndex((prev) => prev + 1);
       }
     };
 
-    // 상태 전환 확인
     if (!isDeleting && charIndex === current.length) {
-      // 타이핑 완료, 잠시 대기 후 삭제 시작
       timer = setTimeout(() => {
         setIsDeleting(true);
       }, pauseTime);
     } else if (isDeleting && charIndex === 0) {
-      // 삭제 완료, 다음 단어로 이동
       setIsDeleting(false);
       setLoopIndex((prev) => prev + 1);
     } else {
-      // 타이핑/삭제 진행 중
       timer = setTimeout(
         handleTyping,
         isDeleting ? typingSpeed / 2 : typingSpeed
@@ -52,10 +45,9 @@ export default function IntroBlock() {
 
   return (
     <section className="relative w-full max-w-3xl mx-auto px-6 py-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-lg sm:text-xl md:text-2xl leading-[1.8] bg-transparent">
-      {/* 우측 상단 소셜 링크 */}
       <div className="absolute top-6 right-6 flex gap-4">
         <a
-          href="https://github.com"
+          href="https://github.com/MoKoCoBall"
           target="_blank"
           rel="noopener noreferrer"
           className="text-zinc-800 dark:text-zinc-200 hover:text-zinc-500 dark:hover:text-zinc-400 transition-colors"
