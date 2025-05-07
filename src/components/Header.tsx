@@ -24,7 +24,7 @@ export default function Header() {
                 &lt;/&gt;
               </span>
             </div>
-            <span className="hidden lg:hidden ml-3 custom-hover-effect">
+            <span className="hidden md:block ml-3 custom-hover-effect">
               sang-hee-dev
             </span>
           </Link>

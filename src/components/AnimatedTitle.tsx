@@ -54,7 +54,8 @@ export default function IntroBlock() {
   }, [charIndex, isDeleting, loopIndex]);
 
   return (
-    <section className="relative w-full max-w-3xl mx-auto px-6 py-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-lg sm:text-xl md:text-2xl leading-[1.8] bg-transparent">
+    <section className="relative w-full max-w-3xl mx-auto px-6 pb-8 pt-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-lg sm:text-xl md:text-2xl leading-[1.8] bg-transparent">
+      {/* 소셜 링크 - 모든 화면 크기에서 표시 */}
       <div className="absolute top-6 right-6 flex gap-4">
         <a
           href="https://github.com/MoKoCoBall"
@@ -114,25 +115,28 @@ export default function IntroBlock() {
           </span>
         </div>
 
-        <div className="mt-2 whitespace-nowrap">
-          <span className="text-zinc-800 dark:text-zinc-200">&lt;p&gt;</span>
-          <span className="ml-2 text-zinc-800 dark:text-zinc-200">
-            저는{" "}
-            <span className="inline-block font-bold">
-              <span className="text-black dark:text-white bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
-                {text}
-                <span
-                  className={`inline-block w-[2px] h-[1em] align-middle bg-black dark:bg-white ${
-                    showCursor ? "opacity-100" : "opacity-0"
-                  }`}
-                ></span>
-              </span>
-            </span>{" "}
-            개발자입니다.
-          </span>
-          <span className="ml-1 text-zinc-800 dark:text-zinc-200">
-            &lt;/p&gt;
-          </span>
+        {/* 모바일 화면에서 줄바꿈도 방지 */}
+        <div className="mt-2 overflow-x-hidden">
+          <div className="whitespace-nowrap">
+            <span className="text-zinc-800 dark:text-zinc-200">&lt;p&gt;</span>
+            <span className="ml-2 text-zinc-800 dark:text-zinc-200">
+              저는{" "}
+              <span className="inline-block font-bold">
+                <span className="text-black dark:text-white bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
+                  {text}
+                  <span
+                    className={`inline-block w-[2px] h-[1em] align-middle bg-black dark:bg-white ${
+                      showCursor ? "opacity-100" : "opacity-0"
+                    }`}
+                  ></span>
+                </span>
+              </span>{" "}
+              개발자입니다.
+            </span>
+            <span className="ml-1 text-zinc-800 dark:text-zinc-200">
+              &lt;/p&gt;
+            </span>
+          </div>
         </div>
       </div>
 
