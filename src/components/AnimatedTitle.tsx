@@ -6,6 +6,7 @@ import useTypingAnimation from "@/app/hooks/useTypingAnimation";
 const roles = ["FrontEnd", "React", "Next.js", "TypeScript"];
 const typingSpeed = 150;
 const pauseTime = 3000;
+const nextjsIndex = 2;
 
 const techImages = [
   "/icons/javascript.svg", // FrontEnd
@@ -36,12 +37,20 @@ export default function IntroBlock() {
               transform: "translateX(30%) rotate(-5deg) scale(1.2)",
             }}
           >
-            <div className="relative w-full h-full">
+            <div
+              className={`relative w-full h-full ${
+                index === nextjsIndex ? "dark:bg-white opacity-30" : ""
+              }`}
+            >
               <Image
                 src={image}
                 alt={roles[index]}
                 fill
-                className="object-contain opacity-20 dark:opacity-10"
+                className={`object-contain ${
+                  index === nextjsIndex
+                    ? "opacity-30 dark:opacity-50 p-12"
+                    : "opacity-30 dark:opacity-50"
+                }`}
                 priority
               />
             </div>

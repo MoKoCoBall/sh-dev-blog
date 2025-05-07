@@ -36,8 +36,10 @@ export default function Comments() {
   }, [resolvedTheme, isClient]);
 
   return (
-    <div className="mt-12 p-4 border rounded-lg shadow-lg dark:bg-white dark:text-black bg-black text-white">
-      <div id="comments" />
+    <div className="mt-8 rounded-xl border border-gray-200 dark:border-zinc-700 overflow-hidden bg-white dark:bg-zinc-900">
+      <div className="p-6">
+        <div id="comments" className="transition-all duration-300" />
+      </div>
     </div>
   );
 }
