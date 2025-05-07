@@ -1,32 +1,46 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    checkScreenSize();
+
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   return (
     <>
-      <div className="max-w-screen-lg w-full px-4 sm:w-[90%] md:w-[80%] lg:w-[60%] mx-auto text-lg sm:text-xl md:text-2xl font-bold flex items-center justify-between py-5">
+      <div className="max-w-screen-xl w-full px-4 sm:w-[95%] md:w-[90%] lg:w-[85%] mx-auto text-lg sm:text-xl md:text-2xl font-bold flex items-center justify-between py-5">
         <div className="flex items-center">
           <Link href={`/`} className="flex items-center">
-            <div
-              className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                theme === "dark"
-                  ? "bg-zinc-800 text-zinc-100"
-                  : "bg-zinc-200 text-zinc-800"
-              }`}
-            >
-              <span className="flex items-center justify-center w-full h-full text-center text-lg">
-                &lt;/&gt;
-              </span>
-            </div>
-            <span className="hidden md:block ml-3 custom-hover-effect">
-              sang-hee-dev
-            </span>
+            {isMobile ? (
+              <div
+                className={`flex items-center justify-center w-10 h-10 rounded-full ${
+                  theme === "dark"
+                    ? "bg-zinc-800 text-zinc-100"
+                    : "bg-zinc-200 text-zinc-800"
+                }`}
+              >
+                <span className="flex items-center justify-center w-full h-full text-center text-lg">
+                  &lt;/&gt;
+                </span>
+              </div>
+            ) : (
+              <span className="custom-hover-effect">sang-hee-dev</span>
+            )}
           </Link>
         </div>
 

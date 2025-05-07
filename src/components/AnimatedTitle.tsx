@@ -54,8 +54,7 @@ export default function IntroBlock() {
   }, [charIndex, isDeleting, loopIndex]);
 
   return (
-    <section className="relative w-full max-w-3xl mx-auto px-6 pb-8 pt-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-lg sm:text-xl md:text-2xl leading-[1.8] bg-transparent">
-      {/* 소셜 링크 - 모든 화면 크기에서 표시 */}
+    <section className="relative w-full max-w-3xl mx-auto px-4 pb-8 pt-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-base sm:text-lg md:text-xl leading-[1.8] bg-transparent">
       <div className="absolute top-6 right-6 flex gap-4">
         <a
           href="https://github.com/MoKoCoBall"
@@ -65,8 +64,8 @@ export default function IntroBlock() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -85,8 +84,8 @@ export default function IntroBlock() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -115,17 +114,16 @@ export default function IntroBlock() {
           </span>
         </div>
 
-        {/* 모바일 화면에서 줄바꿈도 방지 */}
-        <div className="mt-2 overflow-x-hidden">
-          <div className="whitespace-nowrap">
+        <div className="mt-2 max-w-full">
+          <div className="flex flex-wrap items-center">
             <span className="text-zinc-800 dark:text-zinc-200">&lt;p&gt;</span>
             <span className="ml-2 text-zinc-800 dark:text-zinc-200">
               저는{" "}
               <span className="inline-block font-bold">
-                <span className="text-black dark:text-white bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">
+                <span className="text-black dark:text-white bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded min-w-[80px] inline-block">
                   {text}
                   <span
-                    className={`inline-block w-[2px] h-[1em] align-middle bg-black dark:bg-white ${
+                    className={`inline-block w-[2px] h-[1em] ml-[1px] align-middle bg-black dark:bg-white ${
                       showCursor ? "opacity-100" : "opacity-0"
                     }`}
                   ></span>
