@@ -2,9 +2,9 @@ import Comments from "./comment";
 import { getParsedData } from "@/lib/getParsedData";
 
 interface BlogPostProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
