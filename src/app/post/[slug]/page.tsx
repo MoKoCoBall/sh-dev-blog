@@ -8,7 +8,8 @@ interface BlogPostProps {
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
-  const { data, contentHtml } = await getParsedData(params.slug);
+  const { slug } = await params;
+  const { data, contentHtml } = await getParsedData(slug);
 
   return (
     <div className="flex justify-center">
