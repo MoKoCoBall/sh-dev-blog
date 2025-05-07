@@ -1,62 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import useTypingAnimation from "@/app/hooks/useTypingAnimation";
 
 const roles = ["FrontEnd", "React", "Next.js", "TypeScript"];
 const typingSpeed = 150;
 const pauseTime = 3000;
 
+const techImages = [
+  "/icons/javascript.svg", // FrontEnd
+  "/icons/react.svg", // React
+  "/icons/nextjs.svg", // Next.js
+  "/icons/typescript.svg", // TypeScript
+];
+
 export default function IntroBlock() {
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopIndex, setLoopIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [showCursor, setShowCursor] = useState(true);
+  const { text, showCursor, loopIndex } = useTypingAnimation({
+    words: roles,
+    typingSpeed,
+    pauseTime,
+  });
 
-  // Implement cursor
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 500);
-
-    return () => clearInterval(cursorInterval);
-  }, []);
-
-  // Implement typing
-  useEffect(() => {
-    const current = roles[loopIndex % roles.length];
-    let timer: NodeJS.Timeout;
-
-    const handleTyping = () => {
-      if (isDeleting) {
-        setText(current.substring(0, charIndex - 1));
-        setCharIndex((prev) => prev - 1);
-      } else {
-        setText(current.substring(0, charIndex + 1));
-        setCharIndex((prev) => prev + 1);
-      }
-    };
-
-    if (!isDeleting && charIndex === current.length) {
-      timer = setTimeout(() => {
-        setIsDeleting(true);
-      }, pauseTime);
-    } else if (isDeleting && charIndex === 0) {
-      setIsDeleting(false);
-      setLoopIndex((prev) => prev + 1);
-    } else {
-      timer = setTimeout(
-        handleTyping,
-        isDeleting ? typingSpeed / 1.5 : typingSpeed
-      );
-    }
-
-    return () => clearTimeout(timer);
-  }, [charIndex, isDeleting, loopIndex]);
+  const currentImageIndex = loopIndex % roles.length;
 
   return (
-    <section className="relative w-full max-w-3xl mx-auto px-4 pb-16 pt-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-base sm:text-lg md:text-xl leading-[1.8] bg-transparent">
-      <div className="absolute top-6 right-6 flex gap-4">
+    <section className="relative w-full max-w-3xl mx-auto px-4 pb-16 pt-16 font-['JetBrains_Mono','ui-monospace','SFMono-Regular'] text-base sm:text-lg md:text-xl leading-[1.8] bg-transparent overflow-hidden">
+      <div className="absolute top-0 right-0 bottom-0 w-3/4 overflow-hidden pointer-events-none">
+        {techImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute top-0 right-0 h-full w-full transition-all duration-1000 ${
+              currentImageIndex === index ? "opacity-100" : "opacity-0"
+            }`}
+            style={{
+              transform: "translateX(30%) rotate(-5deg) scale(1.2)",
+            }}
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={image}
+                alt={roles[index]}
+                fill
+                className="object-contain opacity-20 dark:opacity-10"
+                priority
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="absolute top-6 right-6 flex gap-4 z-10">
         <a
           href="https://github.com/MoKoCoBall"
           target="_blank"
@@ -101,10 +94,14 @@ export default function IntroBlock() {
         </a>
       </div>
 
-      <div className="text-zinc-800 dark:text-zinc-200">&lt;html&gt;</div>
-      <div className="ml-4 text-zinc-800 dark:text-zinc-200">&lt;body&gt;</div>
+      <div className="relative z-10 text-zinc-800 dark:text-zinc-200">
+        &lt;html&gt;
+      </div>
+      <div className="relative z-10 ml-4 text-zinc-800 dark:text-zinc-200">
+        &lt;body&gt;
+      </div>
 
-      <div className="ml-8">
+      <div className="relative z-10 ml-8">
         <div>
           <span className="text-zinc-800 dark:text-zinc-200">&lt;h1&gt;</span>
           <span className="ml-2 font-bold text-zinc-800 dark:text-zinc-200">
@@ -139,8 +136,12 @@ export default function IntroBlock() {
         </div>
       </div>
 
-      <div className="ml-4 text-zinc-800 dark:text-zinc-200">&lt;/body&gt;</div>
-      <div className="text-zinc-800 dark:text-zinc-200">&lt;/html&gt;</div>
+      <div className="relative z-10 ml-4 text-zinc-800 dark:text-zinc-200">
+        &lt;/body&gt;
+      </div>
+      <div className="relative z-10 text-zinc-800 dark:text-zinc-200">
+        &lt;/html&gt;
+      </div>
     </section>
   );
 }
