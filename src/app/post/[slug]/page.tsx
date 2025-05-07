@@ -1,11 +1,13 @@
 import Comments from "./comment";
 import { getParsedData } from "@/lib/getParsedData";
 
-export default async function BlogPost({
-  params,
-}: {
-  params: { slug: string };
-}) {
+interface BlogPostProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function BlogPost({ params }: BlogPostProps) {
   const { data, contentHtml } = await getParsedData(params.slug);
 
   return (
