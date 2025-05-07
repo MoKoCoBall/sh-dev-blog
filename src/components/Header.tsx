@@ -4,6 +4,7 @@ import React from "react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
+import Link from "next/link";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
@@ -11,12 +12,16 @@ export default function Header() {
   return (
     <div className="max-w-screen-lg w-[60%] mx-auto text-2xl font-bold flex items-center justify-between gap-4">
       <div className="flex items-center gap-4">
-        <div className="mr-8">sang-hee-dev</div>
+        <div className="mr-8">
+          <Link href={`/`} className="custom-hover-effect">
+            sang-hee-dev
+          </Link>
+        </div>
       </div>
       <div className="flex items-center gap-4">
-        <div>Home</div>
-        <div>Post</div>
-        <div>Project</div>
+        <div className="custom-hover-effect">Home</div>
+        <div className="custom-hover-effect">Post</div>
+        <div className="custom-hover-effect">Project</div>
         <Button
           className={`flex gap-4 rounded-full ${
             theme === "dark"

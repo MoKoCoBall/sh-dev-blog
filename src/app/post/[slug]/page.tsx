@@ -1,33 +1,19 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
 import Comments from "./comment";
+import { getParsedData } from "@/lib/getParsedData";
 
 export default async function BlogPost({
   params,
 }: {
   params: { slug: string };
 }) {
-  const filePath = path.join(
-    process.cwd(),
-    "src",
-    "posts",
-    params.slug,
-    "index.md"
-  );
-  const fileContent = fs.readFileSync(filePath, "utf8");
-  const { data, content } = matter(fileContent);
-
-  const processedContent = await remark().use(html).process(content);
-  const contentHtml = processedContent.toString();
+  const { data, contentHtml } = await getParsedData(params.slug);
 
   return (
     <div className="flex justify-center">
       <div className="max-w-screen-lg w-[60%] mx-auto">
-        <div>{data.title}</div>
-        <div>{data.description}</div>
+        <div className="text-4xl">{data.emoji}</div>
+        <div className="text-3xl font-bold">{data.title}</div>
+        <div className="text-lg text-gray-600">{data.description}</div>
         <article
           className="prose dark:prose-invert prose-h1"
           dangerouslySetInnerHTML={{ __html: contentHtml }}

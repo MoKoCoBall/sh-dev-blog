@@ -131,3 +131,25 @@
   box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1),
     0 2px 4px -1px rgba(255, 255, 255, 0.06);
 }
+
+.custom-hover-effect {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.custom-hover-effect::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.custom-hover-effect:hover::after {
+  transform: translateX(0);
+}
