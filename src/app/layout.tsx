@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/Footer";
+import "prismjs/themes/prism-tomorrow.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

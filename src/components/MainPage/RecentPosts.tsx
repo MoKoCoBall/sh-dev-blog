@@ -48,16 +48,6 @@ export default async function RecentPosts() {
                       <span className="invisible">Placeholder</span>
                     )}
                   </div>
-                  <div className="mt-1.5 flex flex-wrap items-center">
-                    {post.tags.map((tag: string) => (
-                      <span
-                        key={tag}
-                        className="inline-block bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 text-xs px-2 py-0.5 mr-1.5 mb-1.5 rounded-xl border border-gray-200 dark:border-zinc-700"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
             </Link>

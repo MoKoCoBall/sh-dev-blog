@@ -16,28 +16,13 @@ export default async function BlogPost({ params }: BlogPostProps) {
       <div className="max-w-screen-lg w-full px-4 sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto">
         <div className="mb-12 pb-8 border-b border-gray-200 dark:border-zinc-800">
           <div className="text-6xl mb-8">{data.emoji}</div>
-
           <h1 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">
             {data.title}
           </h1>
-
-          {data.description && (
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
-              {data.description}
+          {data.preview && (
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              {data.preview}
             </p>
-          )}
-
-          {data.tags && data.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-6">
-              {data.tags.map((tag: string) => (
-                <span
-                  key={tag}
-                  className="inline-block bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-xl border border-gray-200 dark:border-zinc-700"
-                >
-                  #{tag}
-                </span>
-              ))}
-            </div>
           )}
         </div>
 

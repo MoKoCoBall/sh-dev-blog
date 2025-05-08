@@ -153,3 +153,40 @@
 .custom-hover-effect:hover::after {
   transform: translateX(0);
 }
+
+.invert-transition {
+  transition: filter 0.5s ease-in-out;
+}
+
+.inverted {
+  filter: invert(1);
+}
+
+/* Code Block Styling*/
+pre {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+pre code {
+  white-space: pre;
+  word-wrap: normal;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.code-line {
+  display: block;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+}
+
+.line-number::before {
+  content: attr(line);
+  display: inline-block;
+  width: 2rem;
+  text-align: right;
+  margin-right: 1rem;
+  color: #888;
+}

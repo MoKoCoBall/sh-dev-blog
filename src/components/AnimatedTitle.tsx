@@ -38,8 +38,8 @@ export default function IntroBlock() {
             }}
           >
             <div
-              className={`relative w-full h-full ${
-                index === nextjsIndex ? "dark:bg-white opacity-30" : ""
+              className={`relative w-full h-full invert-transition ${
+                index === nextjsIndex ? "dark:bg-white opacity-30 inverted" : ""
               }`}
             >
               <Image

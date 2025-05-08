@@ -8,8 +8,10 @@ import Link from "next/link";
 export default function Header() {
   const { theme, setTheme } = useTheme();
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 640);
     };
@@ -60,14 +62,18 @@ export default function Header() {
       <div className="fixed bottom-6 right-6 z-50">
         <Button
           className={`flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:scale-110 shadow-md ${
-            theme === "dark" ? "bg-zinc-800" : "bg-zinc-100"
+            mounted && theme === "dark" ? "bg-zinc-800" : "bg-zinc-100"
           }`}
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           aria-label={
-            theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
+            mounted && theme === "dark"
+              ? "Switch to Light Mode"
+              : "Switch to Dark Mode"
           }
         >
-          {theme === "dark" ? (
+          {!mounted ? (
+            <span className="opacity-0">⚙️</span>
+          ) : theme === "dark" ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

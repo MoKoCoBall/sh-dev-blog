@@ -5,10 +5,12 @@ import { getParsedData } from "./getParsedData";
 export interface Post {
   slug: string;
   title: string;
-  emoji: string;
-  preview?: string;
-  tags: string[];
-  date?: string;
+  date: string;
+  preview: string;
+  emoji?: string;
+  tags?: string[];
+  series?: string;
+  content: string;
 }
 
 export async function getPosts(): Promise<Post[]> {
@@ -26,6 +28,8 @@ export async function getPosts(): Promise<Post[]> {
         tags: data.tags ? data.tags : null,
         preview: data.preview ? data.preview : null,
         date: data.date ? data.date : null,
+        series: data.series ? data.series : null,
+        content: data.content ? data.content : null,
       };
     })
   );
