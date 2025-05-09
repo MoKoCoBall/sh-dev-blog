@@ -5,6 +5,11 @@ export default async function RecentPosts() {
   const posts = await getPosts();
   const sortedPosts = getSortedPosts(posts);
 
+  // Exclude posts with the "Algorithm" tag
+  const filteredPosts = sortedPosts.filter(
+    (post) => !post.tags?.includes("Algorithm")
+  );
+
   return (
     <>
       <div className="mt-2 mb-10 ml-1">
@@ -13,10 +18,10 @@ export default async function RecentPosts() {
         </span>
       </div>
       <ul className="space-y-6">
-        {sortedPosts.map((post, index) => (
+        {filteredPosts.map((post, index) => (
           <li
             className={`pb-6 ${
-              index !== sortedPosts.length - 1
+              index !== filteredPosts.length - 1
                 ? "border-b border-gray-200 dark:border-zinc-800"
                 : ""
             }`}
