@@ -40,11 +40,12 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1816289569308799"
           crossOrigin="anonymous"
-        ></script>
+          strategy="afterInteractive"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable}`}
