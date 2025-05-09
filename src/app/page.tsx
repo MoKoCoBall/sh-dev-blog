@@ -1,4 +1,4 @@
-import AnimatedTitle from "@/components/AnimatedTitle";
+import AnimatedTitle from "@/components/MainPage/AnimatedTitle";
 import RecentPosts from "@/components/MainPage/RecentPosts";
 
 export default async function Home() {

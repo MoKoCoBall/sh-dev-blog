@@ -24,8 +24,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sang Hee Dev",
-  description: "FrontEnd Developer's Blog",
+  title: "Code Factory",
+  description: "Code Factory",
+  icons: {
+    icon: "/favicon/favicon.svg",
+  },
 };
 
 export default function RootLayout({
