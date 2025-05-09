@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/Footer";
 import "prismjs/themes/prism-tomorrow.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,8 +25,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Code Factory",
-  description: "Code Factory",
+  title: "무한상회",
+  description: "무한상회",
   icons: {
     icon: "/favicon/favicon.svg",
   },
@@ -38,6 +39,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1816289569308799"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable}`}
       >
