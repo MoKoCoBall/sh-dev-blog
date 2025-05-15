@@ -7,7 +7,7 @@ export default async function RecentPosts() {
 
   // Exclude posts with the "Algorithm" tag
   const filteredPosts = sortedPosts.filter(
-    (post) => !post.tags?.includes("Algorithm")
+    (post) => !post.tags?.includes("algorithm")
   );
 
   return (

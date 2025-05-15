@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import useTypingAnimation from "@/app/hooks/useTypingAnimation";
+import { useTheme } from "next-themes";
 
 const roles = ["FrontEnd", "React", "Next.js", "TypeScript"];
 const typingSpeed = 150;
@@ -16,6 +17,7 @@ const techImages = [
 ];
 
 export default function IntroBlock() {
+  const { theme } = useTheme();
   const { text, showCursor, loopIndex } = useTypingAnimation({
     words: roles,
     typingSpeed,
@@ -39,7 +41,9 @@ export default function IntroBlock() {
           >
             <div
               className={`relative w-full h-full invert-transition ${
-                index === nextjsIndex ? "dark:bg-white opacity-30 inverted" : ""
+                index === nextjsIndex && theme === "dark"
+                  ? "dark:bg-white opacity-30 inverted"
+                  : ""
               }`}
             >
               <Image

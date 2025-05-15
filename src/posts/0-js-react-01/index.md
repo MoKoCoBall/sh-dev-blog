@@ -1,7 +1,7 @@
 ---
 title: "JavaScript 로 React 만들기 - 1"
 date: "2025-05-08"
-emoji: "🚀"
+emoji: "🌳"
 tags: ["react", "javascript"]
 preview: "VDOM 과 DOM 에 대해 공부하고 간단하게 구현해보기"
 ---
