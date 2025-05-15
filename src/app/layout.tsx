@@ -25,8 +25,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "개발자의 블로그",
-  description: "개발자의 블로그",
+  title: "상상 이상",
+  description: "상상 이상의 블로그",
   icons: {
     icon: "/favicon/favicon.svg",
   },
