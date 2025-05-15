@@ -25,8 +25,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "무한상회",
-  description: "무한상회",
+  title: "개발자의 블로그",
+  description: "개발자의 블로그",
   icons: {
     icon: "/favicon/favicon.svg",
   },
