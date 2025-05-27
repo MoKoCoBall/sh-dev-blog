@@ -25,6 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sanghee.com"),
   title: "상상 이상",
   description: "상상 이상의 블로그",
   icons: {
