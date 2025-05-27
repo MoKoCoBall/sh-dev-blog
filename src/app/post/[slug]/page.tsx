@@ -1,19 +1,37 @@
 import { getParsedData } from "@/lib/getParsedData";
 import Comments from "./comment";
-import RootLayout from "@/app/layout";
 
-interface BlogPostProps {
-  params: Promise<{
+export interface BlogPostProps {
+  params: {
     slug: string;
-  }>;
+  };
 }
 
-export default async function BlogPost({ params }: BlogPostProps) {
-  const { slug } = await params;
-  const { data, contentHtml } = await getParsedData(slug);
+export interface PostData {
+  title: string;
+  preview?: string;
+  slug: string;
+}
 
-  return (
-    <RootLayout post={data}>
+export async function generateMetadata(props: BlogPostProps) {
+  const params = await Promise.resolve(props.params);
+  const { data } = await getParsedData(params.slug);
+
+  return {
+    title: data.title,
+    openGraph: {
+      title: data.title,
+    },
+  };
+}
+
+export default async function BlogPost(props: BlogPostProps) {
+  try {
+    const params = await Promise.resolve(props.params);
+    const slug = params.slug;
+    const { data, contentHtml } = await getParsedData(slug);
+
+    return (
       <div className="flex justify-center py-8">
         <div className="max-w-screen-lg w-full px-4 sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto">
           <div className="mb-12 pb-8 border-b border-gray-200 dark:border-zinc-800">
@@ -29,14 +47,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
           </div>
 
           <article
-            className="prose dark:prose-invert prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg
-                       prose-headings:font-bold prose-headings:my-4 
-                       prose-a:text-black dark:prose-a:text-gray-300 prose-a:no-underline hover:prose-a:underline
-                       prose-img:rounded-lg prose-img:mx-auto
-                       prose-p:my-4 prose-ul:my-4 prose-ol:my-4
-                       prose-code:px-1 prose-code:py-0.5 prose-code:bg-gray-100 dark:prose-code:bg-zinc-800 prose-code:rounded
-                       prose-pre:bg-gray-100 dark:prose-pre:bg-zinc-800
-                       max-w-none mb-8"
+            className="prose dark:prose-invert max-w-none mb-8"
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
 
@@ -48,6 +59,13 @@ export default async function BlogPost({ params }: BlogPostProps) {
           </div>
         </div>
       </div>
-    </RootLayout>
-  );
+    );
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return (
+      <div className="text-center text-red-500 mt-8">
+        데이터를 불러오는 데 실패했습니다.
+      </div>
+    );
+  }
 }
