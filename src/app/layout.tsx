@@ -7,7 +7,6 @@ import { JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/Footer";
 import "prismjs/themes/prism-tomorrow.css";
 import Head from "next/head";
-import { PostData } from "./post/[slug]/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,25 +34,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  post,
 }: Readonly<{
   children: React.ReactNode;
-  post?: PostData;
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
       <Head>
         <meta property="og:image" content="/thumbnail/thumbnail.png" />
-        {post ? (
-          <>
-            <meta property="og:title" content={post.title} />
-            <meta property="og:description" content={post.preview || ""} />
-            <meta
-              property="og:url"
-              content={`https://sang-hee.dev/post/${post.slug}`}
-            />
-          </>
-        ) : null}
       </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable}`}

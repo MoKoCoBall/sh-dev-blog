@@ -19,8 +19,17 @@ export async function generateMetadata(props: BlogPostProps) {
 
   return {
     title: data.title,
+    description: data.preview,
     openGraph: {
       title: data.title,
+      description: data.preview,
+      url: `https://sang-hee.com/post/${params.slug}`,
+      images: [
+        {
+          url: "/thumbnail/thumbnail.png",
+          alt: data.title,
+        },
+      ],
     },
   };
 }
