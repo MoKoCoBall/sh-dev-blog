@@ -1,6 +1,6 @@
 import { getParsedData } from "@/lib/getParsedData";
 import Comments from "./comment";
-import RootLayout from "../layout";
+import RootLayout from ".../layout";
 
 interface BlogPostProps {
   params: Promise<{
