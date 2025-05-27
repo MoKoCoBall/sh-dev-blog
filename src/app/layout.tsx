@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sang-hee-kim.com"),
+  metadataBase: new URL("https://sang-hee-kim.com/"),
   title: "상상 이상",
   description: "상상 이상의 블로그",
   icons: {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "상상 이상",
     description: "상상 이상의 블로그",
-    url: "https://sang-hee-kim.com",
+    url: "https://sang-hee-kim.com/",
     type: "website",
     images: [
       {
