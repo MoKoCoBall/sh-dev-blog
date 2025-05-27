@@ -1,14 +1,6 @@
 import { getParsedData } from "@/lib/getParsedData";
 import Comments from "./comment";
 
-interface Params {
-  slug: string;
-}
-
-interface BlogPostProps {
-  params: Params;
-}
-
 export interface PostData {
   title: string;
   preview?: string;
