@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/Footer";
 import "prismjs/themes/prism-tomorrow.css";
-import Script from "next/script";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,22 +32,30 @@ export const metadata: Metadata = {
   },
 };
 
+export interface PostData {
+  title: string;
+  slug: string;
+  preview: string;
+}
+
 export default function RootLayout({
   children,
+  post,
 }: Readonly<{
   children: React.ReactNode;
+  post: PostData;
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head>
+      <Head>
         <meta property="og:image" content="/thumbnail/thumbnail.png" />
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1816289569308799"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.preview} />
+        <meta
+          property="og:url"
+          content={`https://sang-hee.dev/post/${post.slug}`}
         />
-      </head>
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable}`}
       >
