@@ -6,7 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/Footer";
 import "prismjs/themes/prism-tomorrow.css";
-import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,9 +39,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <Head>
+      <head>
         <meta property="og:image" content="/thumbnail/thumbnail.png" />
-      </Head>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable}`}
       >
