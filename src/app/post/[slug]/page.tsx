@@ -1,10 +1,12 @@
 import { getParsedData } from "@/lib/getParsedData";
 import Comments from "./comment";
 
-export interface BlogPostProps {
-  params: {
-    slug: string;
-  };
+interface Params {
+  slug: string;
+}
+
+interface BlogPostProps {
+  params: Params;
 }
 
 export interface PostData {
@@ -13,9 +15,13 @@ export interface PostData {
   slug: string;
 }
 
-export async function generateMetadata(props: BlogPostProps) {
-  const params = await Promise.resolve(props.params);
-  const { data } = await getParsedData(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const resolvedParams = await params;
+  const { data } = await getParsedData(resolvedParams.slug);
 
   return {
     title: data.title,
@@ -23,7 +29,7 @@ export async function generateMetadata(props: BlogPostProps) {
     openGraph: {
       title: data.title,
       description: data.preview,
-      url: `https://sang-hee.com/post/${params.slug}`,
+      url: `https://sanghee.com/post/${resolvedParams.slug}`,
       images: [
         {
           url: "/thumbnail/thumbnail.png",
@@ -34,11 +40,14 @@ export async function generateMetadata(props: BlogPostProps) {
   };
 }
 
-export default async function BlogPost(props: BlogPostProps) {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   try {
-    const params = await Promise.resolve(props.params);
-    const slug = params.slug;
-    const { data, contentHtml } = await getParsedData(slug);
+    const resolvedParams = await params;
+    const { data, contentHtml } = await getParsedData(resolvedParams.slug);
 
     return (
       <div className="flex justify-center py-8">
