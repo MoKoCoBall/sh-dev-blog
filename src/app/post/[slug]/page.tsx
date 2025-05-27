@@ -21,7 +21,7 @@ export async function generateMetadata({
     openGraph: {
       title: data.title,
       description: data.preview,
-      url: `https://sanghee.com/post/${resolvedParams.slug}`,
+      url: `https://sanghee.com/post/${data.slug}`,
       images: [
         {
           url: "/thumbnail/thumbnail.png",
