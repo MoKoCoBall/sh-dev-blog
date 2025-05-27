@@ -29,7 +29,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
         <article
           className="prose dark:prose-invert prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg
                      prose-headings:font-bold prose-headings:my-4 
-                     prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+                     prose-a:text-black dark:prose-a:text-gray-300 prose-a:no-underline hover:prose-a:underline
                      prose-img:rounded-lg prose-img:mx-auto
                      prose-p:my-4 prose-ul:my-4 prose-ol:my-4
                      prose-code:px-1 prose-code:py-0.5 prose-code:bg-gray-100 dark:prose-code:bg-zinc-800 prose-code:rounded
